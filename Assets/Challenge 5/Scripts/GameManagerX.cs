@@ -7,16 +7,15 @@ using UnityEngine.UI;
 
 public class GameManagerX : MonoBehaviour
 {
+    public List<GameObject> targetPrefabs;
     public TextMeshProUGUI scoreText;
     public TextMeshProUGUI gameOverText;
-    public GameObject titleScreen;
-    public Button restartButton; 
-
-    public List<GameObject> targetPrefabs;
-
-    private int score;
-    private float spawnRate = 1.5f;
     public bool isGameActive;
+    public Button restartButton; 
+    public GameObject titleScreen;
+
+    private float spawnRate = 1.5f;
+    private int score;
 
     private float spaceBetweenSquares = 2.5f; 
     private float minValueX = -3.75f; //  x value of the center of the left-most square
@@ -25,7 +24,7 @@ public class GameManagerX : MonoBehaviour
     // Start the game, remove title screen, reset score, and adjust spawnRate based on difficulty button clicked
     public void StartGame(int difficulty)
     {
-        spawnRate /= 5;
+        spawnRate /= difficulty;
         isGameActive = true;
         StartCoroutine(SpawnTarget());
         score = 0;
